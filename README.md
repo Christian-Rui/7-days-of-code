@@ -76,7 +76,91 @@ A função principal (`compararVariaveis`) recebe dois objetos contendo o nome e
 
 ## ⚡ Dia 2
 
-**(Adicionar informações sobre o desafio do Dia 2 assim que for completado)**
+### Desafio Proposto:
+O desafio do segundo dia consistiu em criar uma interação simples com o usuário, recebendo entradas de dados através de prompts, e com base nas respostas, proporcionar uma interação dinâmica. O objetivo foi usar essas entradas para personalizar as respostas e tornar a experiência mais envolvente.
+
+### O que foi feito:
+No segundo dia do desafio, foi implementado um sistema de interação com o usuário, no qual é solicitado seu nome, idade e qual linguagem de programação está estudando. A partir dessas respostas, o programa gera uma mensagem personalizada para o usuário. Além disso, o usuário é questionado se gosta da linguagem de programação que está estudando, e uma resposta aleatória é gerada com base na escolha dele.
+
+Para garantir que o código estivesse mais modular e organizado, utilizei o ES6 para importar e exportar os scripts dos dias 1 e 2, centralizando tudo em um único arquivo chamado `appLogicaJS.js`, que agora é o único arquivo linkado no HTML.
+
+As funções de entrada de dados foram organizadas em um script separado chamado `functions.js`, que facilita o gerenciamento dos prompts e a coleta de dados de forma estruturada e reutilizável.
+
+### 💻 Tecnologias Usadas:
+- **JavaScript (ES6)**: Utilização de módulos ES6 para organizar o código e garantir a modularidade.
+- **Prompt/Alert**: Para interagir com o usuário através de entradas e mensagens.
+
+### Partes Importantes da Programação:
+
+1. **Uso de Módulos ES6**:
+   Para modularizar o código e facilitar a manutenção, usei a funcionalidade de módulos do JavaScript. O script `appLogicaJS.js` agora importa as funções dos desafios anteriores e executa os dois desafios de forma organizada.
+
+   **Importação no script `appLogicaJS.js`**:
+    ```js
+    import { executarPrimeiroDesafio } from "./Dia1.js";  
+    import { executarSegundoDesafio } from "./Dia2.js";  
+
+    executarPrimeiroDesafio();  
+    executarSegundoDesafio();
+    ```
+
+2. **Funções Personalizadas para Receber Dados**:
+   Para facilitar a coleta de informações do usuário, criei funções personalizadas no script `functions.js`. Essas funções são responsáveis por garantir que os dados recebidos sejam válidos e que os prompts sejam apresentados de forma consistente.
+
+   **Importação das funções personalizadas**:
+    ```js
+    import {  
+        receberString,  
+        receberValorPositivo,  
+        receberNumeroEspecifico,  
+    } from "../../src/js/functions.js";
+    ```
+
+3. **Respostas Aleatórias**:
+   Para tornar a interação mais interessante, criei um sistema de respostas aleatórias para a pergunta sobre gostar ou não da linguagem de programação estudada. Dependendo da resposta do usuário, uma mensagem motivacional é gerada a partir de um conjunto de respostas predefinidas.
+
+   **Código para respostas aleatórias**:
+    ```js
+    const RESPOSTAS_GOSTA_PROGRAMACAO = {  
+        1: [  
+        "Muito bom! Continue estudando e você terá muito sucesso.",  
+        "Excelente! Persistindo no estudo, você alcançará grandes resultados.",  
+        "Fico feliz em ouvir isso! O esforço no aprendizado traz grandes conquistas.",  
+        "Ótimo! A dedicação ao estudo é o caminho para o sucesso.",  
+        "Perfeito! O estudo constante leva você a lugares incríveis."  
+        ],  
+        2: [  
+        "Ahh, que pena... Você poderia tentar aprender outras linguagens.",  
+        "Entendo. Talvez uma abordagem diferente possa te interessar.",  
+        "Não desanime, outras linguagens podem despertar seu interesse.",  
+        "Tudo bem! Vale a pena explorar outras opções para encontrar o que você mais gosta.",  
+        "Cada pessoa tem suas preferências. Buscar novos conhecimentos é sempre válido."  
+        ]  
+    };  
+
+    function escolherNumeroAleatorio(max){  
+        return Math.floor(Math.random() * max) + 1;  
+    }
+    ```
+4. **Alertas Personalizados**:
+   Após coletar as informações do usuário, o programa exibe uma mensagem personalizada com base nas respostas fornecidas, tornando a interação mais interessante e dinâmica.
+
+   **Interação com o usuário**:
+    ```js
+    nomeUsuario = receberString("Qual é o seu nome?");  
+    idadeUsuario = receberValorPositivo("Quantos anos você tem?");  
+    linguagemProgramacao = receberString("Qual linguagem de programação você está estudando?");  
+
+    alert(  
+        `Ola ${nomeUsuario}, você tem ${idadeUsuario} ano${idadeUsuario > 1 ? "s" : ""} e já está aprendendo ${linguagemProgramacao}`  
+    );  
+
+    gostaLinguagem = receberNumeroEspecifico(  
+        `Você gosta de estudar ${linguagemProgramacao}?\nResponda com o número correspondente:\n\n[ 1 ] Sim\n[ 2 ] Não`, [1,2]);  
+
+    let respostas = RESPOSTAS_GOSTA_PROGRAMACAO[gostaLinguagem];  
+    alert(respostas[escolherNumeroAleatorio(respostas.length)]);  
+    ```
 
 ---
 
