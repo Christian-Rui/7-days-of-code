@@ -5,11 +5,22 @@ let stringTrinta = '30'
 let numeroDez = 10
 let stringDez = 10
 
-mostrarAlert(compararVariaveis({nome: "numeroUm", valor: numeroUm}, {nome: "stringUm", valor: stringUm}, ));
+export function executarPrimeiroDesafio(){
+    alert(compararVariaveis(
+        {nome: "numeroUm", valor: numeroUm}, 
+        {nome: "stringUm", valor: stringUm}, 
+    ));
 
-mostrarAlert(compararVariaveis({nome: "numeroTrinta", valor: numeroTrinta}, {nome: "stringTrinta", valor: stringTrinta}, ));
+    alert(compararVariaveis(
+        {nome: "numeroTrinta", valor: numeroTrinta}, 
+        {nome: "stringTrinta", valor: stringTrinta}, 
+    ));
 
-mostrarAlert(compararVariaveis({nome: "numeroDez", valor: numeroDez}, {nome: "stringDez", valor: stringDez}, ));
+    alert(compararVariaveis(
+        {nome: "numeroDez", valor: numeroDez}, 
+        {nome: "stringDez", valor: stringDez}, 
+    ));
+}
 
 function compararValores(valor1, valor2){
     return valor1 == valor2;
@@ -45,8 +56,4 @@ function compararVariaveis(objeto1, objeto2){
     }
 
     return textoResultado;
-}
-
-function mostrarAlert(texto){
-    alert(texto);
 }
